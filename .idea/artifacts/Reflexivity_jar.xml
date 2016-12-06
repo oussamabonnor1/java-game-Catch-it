@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Reflexivity:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Reflexivity_jar</output-path>
+    <root id="archive" name="Reflexivity.jar">
+      <element id="module-output" name="Reflexivity" />
+    </root>
+  </artifact>
+</component>
