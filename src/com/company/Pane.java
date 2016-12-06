@@ -24,8 +24,8 @@ public class Pane extends JPanel {
     public ArrayList<Board> boards = new ArrayList<>();
     public ArrayList<Ball> balls = new ArrayList<>();
 
-    public JLabel l = new JLabel("Score: " + score);
-    public JLabel bestScoreL = new JLabel("Best Score: " + bestScore);
+    Font f = new Font("Courier New", Font.BOLD, 30);
+    Font f2 = new Font("Courier New", Font.BOLD, 15);
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.white);
@@ -39,11 +39,12 @@ public class Pane extends JPanel {
             g.setColor(boards.get(0).c);
             g.fillRect(boards.get(0).x, boards.get(0).y, boards.get(0).width, boards.get(0).height);
             g.setColor(Color.BLACK);
+            g.setFont(f2);
             g.drawString("arreter: ECHAPE", 20, 20);
             g.drawString("pause: SPACE", 680, 20);
         }
 
-        if(pause){
+        if (pause) {
             g.setColor(Color.BLACK);
             g.drawString("PAUSE", 400, 230);
         }
@@ -53,10 +54,20 @@ public class Pane extends JPanel {
             g.drawString("YOU LOST, TRY AGAIN?", 300, 230);
             g.drawString("YES: Press Y      NO: Press N", 300, 250);
         }
+
+        g.setFont(f);
+
+        if (bestScore > 0) {
+            g.setColor(Color.BLUE);
+            g.drawString("Best Score: " + bestScore, 550, 60);
+        }
+
+        g.setColor(Color.RED);
+        g.drawString("Score: " + score, 20, 60);
     }
 
     public void start() {
-
+        repaint();
         pause = false;
         lose = false;
         add = false;
@@ -66,24 +77,11 @@ public class Pane extends JPanel {
         if (score > bestScore) bestScore = score;
         score = 0;
 
-
-        ball1 = new Ball(r.nextInt(650),r.nextInt(300), Color.black, r.nextInt(50-20)+20, false, false);
+        ball1 = new Ball(r.nextInt(650), r.nextInt(300), Color.black, r.nextInt(50 - 20) + 20, false, false);
         board = new Board(350, 630, Color.black, 120, 350);
 
         replay = false;
 
-        l.setFont(new Font("Courier New", Font.BOLD, 30));
-        l.setForeground(Color.RED);
-        l.setText("Score: " + score);
-        l.setBounds(50,20,150,100);
-
-        if (bestScore > 0) {
-            bestScoreL.setFont(new Font("Courier New", Font.BOLD, 30));
-            bestScoreL.setForeground(Color.BLUE);
-            bestScoreL.setText("Best Score: " + bestScore);
-            bestScoreL.setBounds(530,20,250,100);
-            add(bestScoreL);
-        }
 
         boards.add(board);
         balls.add(ball1);
@@ -133,7 +131,7 @@ public class Pane extends JPanel {
                             balls.get(i).y -= 1;
                             balls.get(i).reverseY = true;
                             score++;
-                            l.setText("Score: " + score);
+                            repaint();
                             add = false;
                         }
                     }

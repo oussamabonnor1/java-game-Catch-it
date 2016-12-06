@@ -7,25 +7,23 @@ import java.awt.event.*;
 /**
  * Created by Oussama on 02/12/2016.
  */
-public class Frame extends JFrame implements KeyListener,MouseMotionListener {
+public class Frame extends JFrame implements KeyListener, MouseMotionListener {
+
     Pane pane = new Pane();
 
     public Frame() {
         setTitle("Frame");
-        pane.add(pane.l);
-        pane.setLayout(null);
         setLocation(520, 120);
         this.setResizable(false);
         this.addMouseMotionListener(this);
         this.addKeyListener(this);
-        this.setContentPane(pane);
         this.setSize(800, 800);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+        pane.setLayout(null);
+        setContentPane(pane);
         pane.start();
-        pane.repaint();
     }
-
 
 
     @Override
@@ -63,19 +61,19 @@ public class Frame extends JFrame implements KeyListener,MouseMotionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(pane.lose){
-            if(e.getKeyCode()==KeyEvent.VK_Y){
-                pane.replay=true;
-            }else if(e.getKeyCode()==KeyEvent.VK_N){
+        if (pane.lose) {
+            if (e.getKeyCode() == KeyEvent.VK_Y) {
+                pane.replay = true;
+            } else if (e.getKeyCode() == KeyEvent.VK_N) {
                 System.exit(0);
             }
         }
 
-        if(e.getKeyCode()==KeyEvent.VK_SPACE){
-            pane.pause=!pane.pause;
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            pane.pause = !pane.pause;
         }
 
-        if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
     }
