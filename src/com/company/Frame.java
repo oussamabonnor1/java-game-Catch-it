@@ -41,15 +41,9 @@ public class Frame extends JFrame implements KeyListener, MouseMotionListener {
                 if (pane.boards.get(0).previousX < e.getX()) pane.movingRight = true;
                 else if (pane.boards.get(0).previousX > e.getX()) pane.movingRight = false;
                 pane.boards.get(0).previousX = e.getX();
-
-
                 pane.boards.get(0).x = e.getX();
+                System.out.println(e.getX());
                 pane.repaint();
-
-                if (pane.boards.get(0).x >= 800) {
-                    pane.boards.get(0).x = 350;
-                    pane.repaint();
-                }
             }
         }
     }
@@ -76,6 +70,7 @@ public class Frame extends JFrame implements KeyListener, MouseMotionListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
+
     }
 
     @Override
